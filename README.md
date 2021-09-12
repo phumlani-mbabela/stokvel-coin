@@ -165,28 +165,7 @@ cleos get account stokvelacc
 	
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
+##### Project Founder: Phumlani Mbabela
 
 
 
