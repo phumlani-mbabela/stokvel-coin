@@ -1,2 +1,2 @@
-# stokvel-coin
+# Stokvel Coin
 Stokvel Coin is a crypto currency based on EOS blockchain, 
