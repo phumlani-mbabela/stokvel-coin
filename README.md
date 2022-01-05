@@ -1,7 +1,6 @@
 # Stokvel Coin
 Stokvel Coin is a crypto currency based on EOS blockchain, 
 
-
 ## How to get started with setting up EOSIO development environment.
 
 ### Install EOSIO
@@ -155,26 +154,13 @@ cleos set account permission stokvelacc owner EOS8VeWV..........................
 cleos get account stokvelacc
 
 	
+## Compile and Deploy project code
 
+### Compile Token
+#### To build the newt token run the following commands from command shell:
+     eosio-cpp -abigen -abigen_output=eosio.stokvel.token.abi -o eosio.stokvel.token.wasm eosio.stokvel.token.cpp
 
-
-
-
-
-
-	
-
+#### You can now deploy the newt.wasm on the blockchain. To do so run the following command:
+cleos set contract eosio.stokvel.token . --abi eosio.stokvel.token.abi eosio.stokvel.token.wasm -p eosio.stokvel.token@active
 
 ##### Project Founder: Phumlani Mbabela
-
-
-
-
-
-
-
-
-
-
-
-

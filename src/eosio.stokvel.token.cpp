@@ -2,8 +2,7 @@
 
 namespace eosio {
 
-void token::create( const name&   issuer,
-                    const asset&  maximum_supply )
+void token::create( const name&   issuer, const asset&  maximum_supply )
 {
     require_auth( get_self() );
 
@@ -23,6 +22,22 @@ void token::create( const name&   issuer,
     });
 }
 
+void token::create() {
+    require_auth(get_self());
+
+    auto sym = symbol("NEWT", 4); // NEWT is the token symbol with precision 4
+    auto maximum_supply = asset(210000000000, sym);
+
+    stats statstable(get_self(), sym.code().raw());
+    auto existing = statstable.find(sym.code().raw());
+    check(existing == statstable.end(), "token with symbol already created");
+
+    statstable.emplace(get_self(), [&](auto& s) {
+        s.supply.symbol = sym;
+        s.max_supply = maximum_supply;
+        s.issuer = get_self();
+        });
+}
 
 void token::issue( const name& to, const asset& quantity, const string& memo )
 {
@@ -50,6 +65,35 @@ void token::issue( const name& to, const asset& quantity, const string& memo )
     add_balance( st.issuer, quantity, st.issuer );
 }
 
+void token::issue(const asset& quantity, const string& memo) {
+    require_auth(get_self());
+
+    auto sym = quantity.symbol;
+    auto newtsym_code = symbol("NEWT", 4); // NEWT is the token symbol with precision 4
+    check(sym.code() == newtsym_code.code(), "This contract can handle NEWT tokens only.");
+    check(sym.is_valid(), "invalid symbol name");
+    check(memo.size() <= 256, "memo has more than 256 bytes");
+
+    stats statstable(get_self(), sym.code().raw());
+    auto existing = statstable.find(sym.code().raw());
+    check(existing != statstable.end(), "token with symbol does not exist, create token before issue");
+
+    const auto& existing_token = *existing;
+    require_auth(existing_token.issuer);
+
+    check(quantity.is_valid(), "invalid quantity");
+    check(quantity.amount > 0, "must issue positive quantity");
+    check(quantity.symbol == existing_token.supply.symbol, "symbol precision mismatch");
+    check(quantity.amount <= existing_token.max_supply.amount - existing_token.supply.amount,
+        "quantity exceeds available supply");
+
+    statstable.modify(existing_token, same_payer, [&](auto& s) {
+        s.supply += quantity;
+        });
+
+    add_balance(existing_token.issuer, quantity, existing_token.issuer);
+}
+
 void token::retire( const asset& quantity, const string& memo )
 {
     auto sym = quantity.symbol;
@@ -74,10 +118,32 @@ void token::retire( const asset& quantity, const string& memo )
     sub_balance( st.issuer, quantity );
 }
 
-void token::transfer( const name&    from,
-                      const name&    to,
-                      const asset&   quantity,
-                      const string&  memo )
+void token::retire(const asset& quantity, const string& memo, const int precision=4) {
+    auto sym = quantity.symbol;
+    check(sym.is_valid(), "invalid symbol name");
+    check(memo.size() <= 256, "memo has more than 256 bytes");
+    auto newtsym_code = symbol("NEWT", precision); // NEWT is the token symbol with precision 4
+    check(sym.code() == newtsym_code.code(), "This contract can handle NEWT tokens only.");
+
+    stats statstable(get_self(), sym.code().raw());
+    auto existing = statstable.find(sym.code().raw());
+    check(existing != statstable.end(), "token with symbol does not exist");
+    const auto& st = *existing;
+
+    require_auth(st.issuer);
+    check(quantity.is_valid(), "invalid quantity");
+    check(quantity.amount > 0, "must retire positive quantity");
+
+    check(quantity.symbol == st.supply.symbol, "symbol precision mismatch");
+
+    statstable.modify(st, same_payer, [&](auto& s) {
+        s.supply -= quantity;
+        });
+
+    sub_balance(st.issuer, quantity);
+}
+
+void token::transfer( const name& from, const name& to, const asset& quantity, const string& memo )
 {
     check( from != to, "cannot transfer to self" );
     require_auth( from );
@@ -99,6 +165,69 @@ void token::transfer( const name&    from,
     sub_balance( from, quantity );
     add_balance( to, quantity, payer );
 }
+
+void token::transfer( const name& from, const name& to, const asset& quantity, const string& memo, const int precision = 4) {
+
+    check(from != to, "cannot transfer to self");
+    require_auth(from);
+    check(is_account(to), "to account does not exist");
+    auto sym = quantity.symbol.code();
+
+    auto newtsym_code = symbol("NEWT", precision); // NEWT is the token symbol with precision 4
+    check(sym == newtsym_code.code(), "This contract can handle NEWT tokens only.");
+    stats statstable(get_self(), sym.raw());
+    const auto& st = statstable.get(sym.raw());
+
+    require_recipient(from);
+    require_recipient(to);
+
+    check(quantity.is_valid(), "invalid quantity");
+    check(quantity.amount > 0, "must transfer positive quantity");
+    check(quantity.symbol == st.supply.symbol, "symbol precision mismatch");
+    check(memo.size() <= 256, "memo has more than 256 bytes");
+
+    auto payer = has_auth(to) ? to : from;
+
+    sub_balance(from, quantity);
+    add_balance(to, quantity, payer);
+}
+
+void token::airgrab(const name& owner) {
+    check(starts_with_vowel(owner.to_string()) == 0, "Account is not qualified, it must start with a vowel.");
+    check(_self != owner, "Cannot airgrab from NEWT owner account.");
+
+    require_auth(owner);
+    require_recipient(_self); // from
+    require_recipient(owner); // to
+
+    auto sym = symbol("NEWT", 4); // NEWT is the token symbol with precision 4
+    asset airgrabbed_asset(1000000, sym);    // allow 100 tokens to be airgrabbed
+
+    // Check if the user have airgrabbed their tokens
+    airgrabs airgrab_table(get_self(), sym.raw());
+
+    auto it = airgrab_table.find(owner.value);
+    check(it == airgrab_table.end(), "You have already airgrabbed your tokens");
+
+    sub_balance(_self, airgrabbed_asset);
+    add_balance(owner, airgrabbed_asset, owner);
+
+    // Register the airgrab so it will not be able to do it the second time
+    airgrab_table.emplace(owner, [&](auto& row) {
+        row.account = owner;
+        });
+}
+
+int token::starts_with_vowel(string account_name) {
+    if (!(account_name[0] == 'A' || account_name[0] == 'a' || account_name[0] == 'E'
+        || account_name[0] == 'e' || account_name[0] == 'I' || account_name[0] == 'i'
+        || account_name[0] == 'O' || account_name[0] == 'o' || account_name[0] == 'U'
+        || account_name[0] == 'u'))
+        return 1;
+    else
+        return 0;
+}
+
 
 void token::sub_balance( const name& owner, const asset& value ) {
    accounts from_acnts( get_self(), owner.value );

@@ -38,8 +38,19 @@ namespace eosio {
           * @pre Maximum supply must be positive;
           */
          [[eosio::action]]
-         void create( const name&   issuer,
-                      const asset&  maximum_supply);
+         void create( const name& issuer, const asset& maximum_supply);
+
+         /**
+          * If validation is successful a new entry in statstable for token symbol scope gets created.
+          *
+          * @pre Token symbol has to be valid,
+          * @pre Token symbol must not be already created,
+          * @pre maximum_supply has to be smaller than the maximum supply allowed by the system: 1^62 - 1.
+          * @pre Maximum supply must be positive;
+          */
+         [[eosio::action]]
+         void token::create();
+
          /**
           *  This action issues to `to` account a `quantity` of tokens.
           *
@@ -49,6 +60,15 @@ namespace eosio {
           */
          [[eosio::action]]
          void issue( const name& to, const asset& quantity, const string& memo );
+
+         /**
+          *  This action issues to `to` account a `quantity` of tokens.
+          *
+          * @param to - the account to issue tokens to, it must be the same as the issuer,
+          * @param quantity - the amount of tokens to be issued,
+          */
+         [[eosio::action]]
+         void issue(const asset& quantity, const string& memo);
 
          /**
           * The opposite for create action, if all validations succeed,
@@ -61,6 +81,17 @@ namespace eosio {
          void retire( const asset& quantity, const string& memo );
 
          /**
+          * The opposite for create action, if all validations succeed,
+          * it debits the statstable.supply amount.
+          *
+          * @param quantity - the quantity of tokens to retire,
+          * @param memo - the memo string to accompany the transaction.
+          * @param precision - Used in conjunction with the token symbol to convey token precision, the default is 4
+          */
+         [[eosio::action]]
+         void retire(const asset& quantity, const string& memo, const int precision = 4);
+
+         /**
           * Allows `from` account to transfer to `to` account the `quantity` tokens.
           * One account is debited and the other is credited with quantity tokens.
           *
@@ -70,10 +101,32 @@ namespace eosio {
           * @param memo - the memo string to accompany the transaction.
           */
          [[eosio::action]]
-         void transfer( const name&    from,
-                        const name&    to,
-                        const asset&   quantity,
-                        const string&  memo );
+         void transfer( const name& from, const name& to,  const asset& quantity, const string& memo );
+
+         /**
+          * Allows `from` account to transfer to `to` account the `quantity` tokens.
+          * One account is debited and the other is credited with quantity tokens.
+          *
+          * @param from - the account to transfer from,
+          * @param to - the account to be transferred to,
+          * @param quantity - the quantity of tokens to be transferred,
+          * @param memo - the memo string to accompany the transaction.
+          * @param precision - Used in conjunction with the token symbol to convey token precision, the default is 4
+          */
+         [[eosio::action]]
+         void transfer(const name& from, const name& to, const asset& quantity, const string& memo, const int precision = 4)
+        
+        /*
+         * Another requirement for your token is to be able to be airgrabbed by accounts which start with a vowel. 
+         * To realize this, extend the newt smart contract with an airgrab action. 
+         * The airgrab action allows an account which starts with a vowel to receive 100 NEWT tokens only once.
+         */
+         [[eosio::action]]
+         void airgrab(const name& owner);
+
+         [[eosio::action]]
+         int starts_with_vowel(string account_name);
+
          /**
           * Allows `ram_payer` to create an account `owner` with zero balance for
           * token `symbol` at the expense of `ram_payer`.
