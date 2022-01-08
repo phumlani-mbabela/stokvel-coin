@@ -1,4 +1,7 @@
 #include <eosio/eosio.hpp>
+#include <eosio/asset.hpp>
+#include <eosio/action.hpp>
+
 using namespace eosio;
 
 CONTRACT eosiostokveltoken : public contract {
