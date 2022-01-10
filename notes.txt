@@ -1,0 +1,117 @@
+
+
+#Admin wallet
+admin
+
+#Stokvel Members
+anele
+thabo
+james
+alice
+
+#Wallets
+cleos wallet create -n w_admin -f /opt/stokvel-coin/code/stokvel-coin/secrets/w_admin.pwd
+cleos wallet create -n w_anele -f /opt/stokvel-coin/code/stokvel-coin/secrets/w_anele.pwd
+cleos wallet create -n w_alice -f /opt/stokvel-coin/code/stokvel-coin/secrets/w_alice.pwd
+cleos wallet create -n w_thabo -f /opt/stokvel-coin/code/stokvel-coin/secrets/w_thabo.pwd
+cleos wallet create -n w_james -f /opt/stokvel-coin/code/stokvel-coin/secrets/w_james.pwd
+
+#Wallet passwords
+w_admin.pwd - PW5KCV14hSN3rj3QvTcGbrcQPjpoNbHtxkRDxkd84Ap8ju6sqW5ou
+w_anele.pwd - PW5JhmDTik8pY5KF46PbQ9PjMMZ1s8CEkcRERQjDpEfUVzp7J6mrS
+w_alice.pwd - PW5Kcd1yHzqL9GKgxSpdDu9ev8d9NM1TWqApQMC7nYo698Vc75HoT
+w_thabo.pwd - PW5KC9fzdvhRfgHHW6MgirK69AfiwgWyW22P3sVYg9mtdZD6ns7FA
+w_james.pwd - PW5KJ2QUAgFJEXhM9VgpA6KwQyc2ezfnhucZwm14JPZdmMPkPLUTV
+
+#Create keys
+cleos create key --file /opt/stokvel-coin/code/stokvel-coin/secrets/keys_admin.txt
+cleos create key --file /opt/stokvel-coin/code/stokvel-coin/secrets/keys_anele.txt
+cleos create key --file /opt/stokvel-coin/code/stokvel-coin/secrets/keys_alice.txt
+cleos create key --file /opt/stokvel-coin/code/stokvel-coin/secrets/keys_thabo.txt
+cleos create key --file /opt/stokvel-coin/code/stokvel-coin/secrets/keys_james.txt
+
+[ec2-user@ip-172-31-32-93 secrets]$ cat /opt/stokvel-coin/code/stokvel-coin/secrets/keys_admin.txt
+Private key: 5KhcsYUAVuGLQzfxGDCVmmxV3XYKGyfgbpJAbtrRZxhmbyhc1AN
+Public key: EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+[ec2-user@ip-172-31-32-93 secrets]$ cat /opt/stokvel-coin/code/stokvel-coin/secrets/keys_anele.txt
+Private key: 5J1meTt8gj6WnBiQZjWogAkb78zNsDBeF3AipjhY7wvGshtRMcA
+Public key: EOS7GFXEcCHTdCB2RNSqw3JK1weac1oaAwQHeNTZkzPESqjgQXDCz
+[ec2-user@ip-172-31-32-93 secrets]$ cat /opt/stokvel-coin/code/stokvel-coin/secrets/keys_alice.txt
+Private key: 5HyLGkzzWeM1gBNvGvJLvq4cxrzXG3KkyoV4FjjXq35it8mjT72
+Public key: EOS57tU2MFzF6yhTdhnYiQPGDU8UuLAV4SZBRrLjMBno3Tw19Tgrn
+[ec2-user@ip-172-31-32-93 secrets]$ cat /opt/stokvel-coin/code/stokvel-coin/secrets/keys_thabo.txt
+Private key: 5JQ3QSE61eisPP2KVJ1geXaVUA1TEhiV8UJiUP4fgQepCd5Yap2
+Public key: EOS7eiPJWVgXd3JGR3vUCvbdnwjNQVzpHFAo7FePtSk6qKYF5mA24
+[ec2-user@ip-172-31-32-93 secrets]$ cat /opt/stokvel-coin/code/stokvel-coin/secrets/keys_james.txt
+Private key: 5HzyTioRN5CS8zHCoMwyspqHctD85E21ssEtDyZCJnjF5sZFCxx
+Public key: EOS6Ck9m8dqqu58dmAaeQFiWL8HGpJfY6HX1LnWRHYQKvCRBSQDui
+[ec2-user@ip-172-31-32-93 secrets]$
+
+#Import keys to wallet.
+
+
+#Create account
+cleos create account eosio aadmin EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+cleos create account eosio aanele EOS7GFXEcCHTdCB2RNSqw3JK1weac1oaAwQHeNTZkzPESqjgQXDCz
+cleos create account eosio aalice EOS57tU2MFzF6yhTdhnYiQPGDU8UuLAV4SZBRrLjMBno3Tw19Tgrn
+cleos create account eosio athabo EOS7eiPJWVgXd3JGR3vUCvbdnwjNQVzpHFAo7FePtSk6qKYF5mA24
+cleos create account eosio ajames EOS6Ck9m8dqqu58dmAaeQFiWL8HGpJfY6HX1LnWRHYQKvCRBSQDui
+cleos create account eosio bob    EOS87TQktA5RVse2EguhztfQVEh6XXxBmgkU8b4Y5YnGvtYAoLGNN
+
+cleos set account permission alice active EOS57tU2MFzF6yhTdhnYiQPGDU8UuLAV4SZBRrLjMBno3Tw19Tgrn -p alice@owner
+
+cleos create account admin deleteaccount EOS87TQktA5RVse2EguhztfQVEh6XXxBmgkU8b4Y5YnGvtYAoLGNN
+cleos create account eosio alice YOUR_PUBLIC_KEY
+
+cleos wallet open -n w_admin
+cleos wallet unlock -n w_admin
+cleos wallet import --name w_admin --private-key 5KhcsYUAVuGLQzfxGDCVmmxV3XYKGyfgbpJAbtrRZxhmbyhc1AN
+
+cleos wallet open -n w_anele
+cleos wallet unlock -n w_anele
+cleos wallet import --name w_anele --private-key 5J1meTt8gj6WnBiQZjWogAkb78zNsDBeF3AipjhY7wvGshtRMcA
+
+cleos wallet open -n w_alice
+cleos wallet unlock -n w_alice
+cleos wallet import --name w_alice --private-key 5HyLGkzzWeM1gBNvGvJLvq4cxrzXG3KkyoV4FjjXq35it8mjT72
+
+cleos wallet open -n w_thabo
+cleos wallet unlock -n w_thabo
+cleos wallet import --name w_thabo --private-key 5JQ3QSE61eisPP2KVJ1geXaVUA1TEhiV8UJiUP4fgQepCd5Yap2
+
+cleos wallet open -n w_james
+cleos wallet unlock -n w_james
+cleos wallet import --name w_james --private-key 5HzyTioRN5CS8zHCoMwyspqHctD85E21ssEtDyZCJnjF5sZFCxx
+
+
+#Make sure nodeos is running.
+ps -eaf | grep nodeos
+
+sudo nodeos -e -p eosio --p2p-peer-address=172.31.32.93:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+sudo nodeos -e -p eosio                                      --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876      --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+
+
+
+
+#Deploy Contracts
+cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/              bank.wasm bank.abi                           -p admin@active
+cleos set contract eosiostokveltoken /opt/stokvel-coin/code/stokvel-coin/eosiostokveltoken/build/ eosiostokveltoken.wasm eosiostokveltoken.abi -p admin@active
+
+
+#Run a command
+cleos --url http://13.245.10.68:8888  get info
+cleos -url  https://13.245.10.68:8888 COMMAND
+cleos --url http://localhost:8888     get info
+
+
+
+[ec2-user@ip-172-31-32-93 contracts]$ pwd
+/usr/opt/eosio/2.2.0-rc1/etc/eosio/contracts
+
+
+
+"Covid19 vaccines are strictly voluntary, but any person who refuses to take the jab shall lose his job." The leadership of today.
+
+
+“This work was strictly voluntary, but any animal who absented himself from it would have his rations reduced by half.” George Orwell
