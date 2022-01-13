@@ -1,0 +1,684 @@
+    1  wget https://github.com/eosio/eos/releases/download/v2.2.0-rc1/eosio-2.2.0-rc1.el7.x86_64.rpm
+    2  sudo yum install ./eosio-2.2.0-rc1.el7.x86_64.rpm
+    3  sudo yum update
+    4  nodeos -e -p eosio --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+    5  sudo ps -eaf | grep eos
+    6  sudo ps -eaf | grep eosio
+    7  sudo kill -9 5893 5875  5874  5873  5889 5875 5874 5873 
+    8  sudo ps -eaf | grep eosio
+    9  nodeos -e -p eosio --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+   10  sudo vi /var/tmp/eosio-startup.sh
+   11  sudo chmod +x /var/tmp/eosio-startup.sh
+   12  vi /etc/systemd/system/eosio.service
+   13  sudo vi /etc/systemd/system/eosio.service
+   14  sudo systemctl daemon-reload
+   15  sudo systemctl enable eosio.service
+   16  systemctl reboot
+   17  sudo systemctl reboot
+   18  vi /var/tmp/eosio-startup.sh
+   19  clear
+   20  tail -f /var/log/eosio-startup.out
+   21  pwd
+   22  ls -lst
+   23  pwd
+   24  ls -lst /
+   25  cd /opt/
+   26  ls
+   27  mkdir stokvel-coin
+   28  sudo mkdir stokvel-coin
+   29  ls -lst
+   30  cd stokvel-coin/
+   31  ls -lst
+   32  sudo mkdir code
+   33  cd code/
+   34  ls
+   35  pwd
+   36  git clone https://github.com/phumlani-mbabela/stokvel-coin.git
+   37  sudo yum install git
+   38  sudo yum install -y git
+   39  git clone https://github.com/phumlani-mbabela/stokvel-coin.git
+   40  sudo git clone https://github.com/phumlani-mbabela/stokvel-coin.git
+   41  ls
+   42  cd stokvel-coin/
+   43  ls
+   44  ls -lst
+   45  mkdir build
+   46  sudo mkdir build
+   47  pwd
+   48  sudo chown ec2-user:ec2-user -R /opt/stokvel-coin/
+   49  pwd
+   50  mkdir build
+   51  cd build/
+   52  ls
+   53  pwd
+   54  ls ../src/
+   55  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+   56  wget https://github.com/eosio/eosio.cdt/releases/download/v1.8.0/eosio.cdt-1.8.0-1.el7.x86_64.rpm
+   57  wget https://github.com/EOSIO/eosio.cdt/releases/download/v1.8.1/eosio.cdt-1.8.1-1.amzn.x86_64.rpm
+   58  sudo yum install ./eosio.cdt-1.8.1-1.amzn.x86_64.rpm 
+   59  sudo yum install ./eosio.cdt-1.8.1-1.amzn.x86_64.rpm -y
+   60  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+   61  pwd
+   62  cd ..
+   63  ls -lst
+   64  eosio-init --project=helloworld
+   65  ls -0lst
+   66  ls -lst
+   67  cd helloworld/
+   68  ls
+   69  pwd
+   70  cd ..
+   71  ls -lst
+   72  pwd
+   73  ls -lst
+   74  pwd
+   75  eosio-init --project=bank
+   76  eosio-init --project=eosio.stokvel.token
+   77  eosio-init --project=eosio-stokvel-token
+   78  eosio-init --project=eosiostokveltoken
+   79  ls -lst
+   80  rm helloworld/
+   81  rm -r  helloworld/
+   82  ls -lst
+   83  git add .
+   84  git  commit -m "Added contracts via eosio-init --project="
+   85  git push
+   86  pwd
+   87  ls
+   88  mkdir certs
+   89  cd certs
+   90  ssh-keygen -t ed25519 -C "pmbabela@gmail.com"
+   91  pwd
+   92  ls
+   93  pwd
+   94  sudo cp /home/ec2-user/.ssh/id_ed25519-pmbabela@gmail.com  /opt/stokvel-coin/code/stokvel-coin/certs/id_ed25519-pmbabela@gmail.com
+   95  sudo cp /home/ec2-user/.ssh/id_ed25519-pmbabela@gmail.com.pub /opt/stokvel-coin/code/stokvel-coin/certs/id_ed25519-pmbabela@gmail.com.pub
+   96  pwd
+   97  cd ..
+   98  git add .
+   99  pwd
+  100  sudo chown ec2-user:ec2-user -R /opt/stokvel-coin/
+  101  git add .
+  102  pwd/opt/stokvel-coin/code/stokvel-coin/certs/id_ed25519-pmbabela@gmail.com.pub
+  103  vi /opt/stokvel-coin/code/stokvel-coin/certs/id_ed25519-pmbabela@gmail.com.pub
+  104  https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.3.4.tar.bz2
+  105  wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.3.4.tar.bz2
+  106  tar -xvjf gnupg-2.3.4.tar.bz2 
+  107  ls
+  108  gpg 
+  109  cd certs/
+  110  ls 
+  111  gpg --full-generate-key
+  112  gpg --default-new-key-algo rsa4096 --gen-key
+  113  history
+  114  gpg --default-new-key-algo rsa4096 --gen-key
+  115  pwd
+  116  mkdir /opt/stokvel-coin/code/stokvel-coin/certs/pgp
+  117  pwd
+  118  ls -lst
+  119  cd ..
+  120  ls -lst
+  121  pwd
+  122  cd ..
+  123  ls
+  124  mv -r stokvel-coin/ stokvel-coin-/
+  125  mv  stokvel-coin/ stokvel-coin-/
+  126  ls -lst
+  127  git clone phumlani-mbabela@github.com:phumlani-mbabela/stokvel-coin.git
+  128  git clone git@github.com:phumlani-mbabela/stokvel-coin.git
+  129  ssh-agent bash -c 'ssh-add /opt/stokvel-coin/code/stokvel-coin-/certs/id_ed25519-pmbabela@gmail.com; git clone git@github.com:phumlani-mbabela/stokvel-coin.git'
+  130  ls -lst
+  131  cd stokvel-coin
+  132  ls 
+  133  eosio-init --project=bank
+  134  eosio-init --project=eosiostokveltoken
+  135  ls 
+  136  ls -lst
+  137  cd bank/
+  138  ls
+  139  cd include/
+  140  ls
+  141  cd ..
+  142  ls -lst
+  143  git add .
+  144  git commit -m "Added 2 contracts"
+  145  git push
+  146  eval "$(ssh-agent -s)"
+  147  vi ~/.ssh/config
+  148  ls ~/.ssh/
+  149  ls -ls ~/.ssh/
+  150  vi ~/.ssh/config
+  151  ssh-add -K ~/.ssh/id_ed25519-pmbabela@gmail.com
+  152  ssh-add -k ~/.ssh/id_ed25519-pmbabela@gmail.com
+  153  eval "$(ssh-agent -s)"
+  154  ssh -T git@github.com
+  155  ssh -T ec2-user@github.com
+  156  ls -lst /home/ec2-user/.ssh/config
+  157  ls -lst /home/ec2-user/.ssh/config/
+  158  ssh -T git@github.com
+  159  chmod 600 ~/.ssh/config
+  160  ssh -T git@github.com
+  161  vi ~/.ssh/config
+  162  ssh -T git@github.com
+  163  pwd
+  164  ls -lst
+  165  git push
+  166  pwd
+  167  ls -lst
+  168  cd bank/
+  169  ls -lst
+  170  ls src/
+  171  cd build/
+  172  ls
+  173  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  174  ls -lst
+  175  pwd
+  176  cd ../../eosiostokveltoken/build/
+  177  ls ../src/
+  178  pwd
+  179  eosio-cpp -abigen ../src/eosiostokveltoken.cpp -o eosiostokveltoken.wasm -I ../include/
+  180  eosio-cpp -abigen ../src/eosiostokveltoken.cpp -o eosiostokveltoken.wasm -I ../include/ -w
+  181  ls ../ricardian/
+  182  vi ../src/eosiostokveltoken.cpp 
+  183  vi ../include/eosiostokveltoken.hpp 
+  184  eosio-cpp -abigen ../src/eosiostokveltoken.cpp -o eosiostokveltoken.wasm -I ../include/ -w
+  185  pwd
+  186  cd ../..
+  187  pwd
+  188  ls -lst
+  189  git add .
+  190  git commit -m "Updating the contracts"
+  191  git push
+  192  pwd
+  193  ls 
+  194  cd bank/
+  195  ls -lst
+  196  vi include/bank.hpp 
+  197  pwd
+  198  cd ..
+  199  pwd
+  200  ls -lst
+  201  vi ./bank/include/bank.hpp 
+  202  ls -lst
+  203  cd bank/build/
+  204  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  205  pwd
+  206  vi ../include/bank.hpp 
+  207  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  208  vi ../include/bank.hpp 
+  209  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  210  eosio -v
+  211  nodeos -v
+  212  history
+  213  history | grep eosio.cdt
+  214  pwd
+  215  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  216  vi ../include/bank.hpp 
+  217  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  218  vi ../include/bank.hpp 
+  219  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  220  vi ../include/bank.hpp 
+  221  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  222  pwd
+  223  vi ../include/bank.hpp 
+  224  vi ../src/bank.cpp 
+  225  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  226  vi ../src/bank.cpp 
+  227  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  228  vi ../include/bank.hpp 
+  229  vi ../src/bank.cpp 
+  230  vi ../include/bank.hpp 
+  231  vi ../src/bank.cpp 
+  232  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  233  vi ../src/bank.cpp 
+  234  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  235  vi ../src/bank.cpp 
+  236  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  237  vi ../src/bank.cpp 
+  238  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  239  vi ../src/bank.cpp 
+  240  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  241  vi ../src/bank.cpp 
+  242  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  243  vi ../src/bank.cpp 
+  244  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  245  vi ../src/bank.cpp 
+  246  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  247  vi ../src/bank.cpp 
+  248  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  249  pwd
+  250  cd ../../eosiostokveltoken/build/
+  251  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  252  cd ../../eosiostokveltoken/build/
+  253  pwd
+  254  vi ../include/eosiostokveltoken.hpp 
+  255  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  256  vi ../include/eosiostokveltoken.hpp 
+  257  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  258  vi ../include/eosiostokveltoken.hpp 
+  259  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  260  vi ../include/eosiostokveltoken.hpp 
+  261  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  262  vi ../include/eosiostokveltoken.hpp 
+  263  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  264  vi ../include/eosiostokveltoken.hpp 
+  265  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  266  vi ../include/eosiostokveltoken.hpp 
+  267  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  268  vi ../include/eosiostokveltoken.hpp 
+  269  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  270  vi ../include/eosiostokveltoken.hpp 
+  271  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  272  clear
+  273  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  274  vi ../include/eosiostokveltoken.hpp 
+  275  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  276  vi ../include/eosiostokveltoken.hpp 
+  277  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  278  vi ../include/eosiostokveltoken.hpp 
+  279  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  280  vi ../include/eosiostokveltoken.hpp 
+  281  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  282  vi ../include/eosiostokveltoken.hpp 
+  283  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  284  vi ../include/eosiostokveltoken.hpp 
+  285  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  286  vi ../include/eosiostokveltoken.hpp 
+  287  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  288  vi ../include/eosiostokveltoken.hpp 
+  289  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  290  vi ../include/eosiostokveltoken.hpp 
+  291  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  292  vi ../include/eosiostokveltoken.hpp 
+  293  vi ../src/eosiostokveltoken.cpp 
+  294  vi ../include/eosiostokveltoken.hpp 
+  295  vi ../src/eosiostokveltoken.cpp 
+  296  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  297  vi ../include/eosiostokveltoken.hpp 
+  298  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  299  vi ../include/eosiostokveltoken.hpp 
+  300  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  301  vi ../include/eosiostokveltoken.hpp 
+  302  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  303  vi ../include/eosiostokveltoken.hpp 
+  304  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  305  vi ../include/eosiostokveltoken.hpp 
+  306  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  307  vi ../include/eosiostokveltoken.hpp 
+  308  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  309  vi ../include/eosiostokveltoken.hpp 
+  310  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  311  vi ../include/eosiostokveltoken.hpp 
+  312  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  313  vi ../include/eosiostokveltoken.hpp 
+  314  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  315  vi ../include/eosiostokveltoken.hpp 
+  316  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  317  vi ../include/eosiostokveltoken.hpp 
+  318  vi ../src/eosiostokveltoken.cpp
+  319  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  320  vi ../src/eosiostokveltoken.cpp
+  321  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  322  vi ../src/eosiostokveltoken.cpp
+  323  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  324  vi ../src/eosiostokveltoken.cpp
+  325  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  326  vi ../src/eosiostokveltoken.cpp
+  327  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  328  vi ../src/eosiostokveltoken.cpp
+  329  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  330  vi ../src/eosiostokveltoken.cpp
+  331  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  332  vi ../src/eosiostokveltoken.cpp
+  333  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  334  vi ../src/eosiostokveltoken.cpp
+  335  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  336  vi ../src/eosiostokveltoken.cpp
+  337  vi ../include/eosiostokveltoken.hpp 
+  338  vi ../src/eosiostokveltoken.cpp
+  339  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  340  vi ../src/eosiostokveltoken.cpp
+  341  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  342  vi ../src/eosiostokveltoken.cpp
+  343  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  344  vi ../src/eosiostokveltoken.cpp
+  345  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  346  vi ../src/eosiostokveltoken.cpp
+  347  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  348  vi ../src/eosiostokveltoken.cpp
+  349  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  350  vi ../include/eosiostokveltoken.hpp 
+  351  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  352  vi ../src/eosiostokveltoken.cpp
+  353  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  354  vi ../src/eosiostokveltoken.cpp
+  355  eosio-cpp -abigen ../src/eosiostokveltoken.cpp  -o eosiostokveltoken.wasm -I ../include/
+  356  pwd
+  357  cd ../../bank/
+  358  cd build/
+  359  ls -lst
+  360  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  361  pwd
+  362  eosio-cpp -abigen ../src/bank.cpp  -o bank.wasm -I ../include/
+  363  ls -lst
+  364  pwd
+  365  ls -lst
+  366  pwd
+  367  ls
+  368  cd ../../eosiostokveltoken/build/
+  369  pwd
+  370  ls
+  371  pwd
+  372  /opt/stokvel-coin/code/stokvel-coin/
+  373  cd /opt/stokvel-coin/code/stokvel-coin/
+  374  ls -lst
+  375  mkdir secrets
+  376  cd secrets/
+  377  pwd
+  378  cleos wallet create -n w_anele -f /opt/stokvel-coin/code/stokvel-coin/secrets/w_anele.pwd
+  379  cleos wallet create -n w_thabo -f /opt/stokvel-coin/code/stokvel-coin/secrets/w_thabo.pwd
+  380  cleos wallet create -n w_james -f /opt/stokvel-coin/code/stokvel-coin/secrets/w_james.pwd
+  381  cleos wallet create -n w_alice -f /opt/stokvel-coin/code/stokvel-coin/secrets/w_alice.pwd
+  382  ls
+  383  ls -lst
+  384  ca *
+  385  cat *
+  386  pwd
+  387  l;s -lst
+  388  ls -lst
+  389  car w_james.pwd 
+  390  cat w_james.pwd 
+  391  cat w_alice.pwd 
+  392  cat w_anele.pwd 
+  393  cat w_thabo.pwd 
+  394  cleos wallet create -n w_alice -f /opt/stokvel-coin/code/stokvel-coin/secrets/w_admin.pwd
+  395  cleos wallet create -n w_admin -f /opt/stokvel-coin/code/stokvel-coin/secrets/w_admin.pwd
+  396  cat /opt/stokvel-coin/code/stokvel-coin/secrets/w_admin.pwd
+  397  cleos create account eosio admin 
+  398  cleos wallet open w_admin
+  399  cleos wallet open 
+  400  cleos wallet open w_alice
+  401  cleos wallet open -n  w_alice
+  402  cleos wallet open -n w_admin
+  403  cleos wallet unlock
+  404  PW5KCV14hSN3rj3QvTcGbrcQPjpoNbHtxkRDxkd84Ap8ju6sqW5ou
+  405  cleos wallet unlock w_admin
+  406  cleos wallet open -n w_admin
+  407  cleos wallet unlock
+  408  PW5KCV14hSN3rj3QvTcGbrcQPjpoNbHtxkRDxkd84Ap8ju6sqW5ou
+  409  cleos wallet unlock -n w_admin
+  410  cleos wallet keys
+  411  cleos create key --to-console
+  412  cleos wallet keys
+  413  cleos create key 
+  414  cleos wallet keys
+  415  cleos create key --to-console
+  416  pwd
+  417  ls -lst
+  418  pwd
+  419  cleos create key --file /opt/stokvel-coin/code/stokvel-coin/secrets/keys_admin.txt
+  420  cleos create key --file /opt/stokvel-coin/code/stokvel-coin/secrets/keys_anele.txt
+  421  cleos create key --file /opt/stokvel-coin/code/stokvel-coin/secrets/keys_alice.txt
+  422  cleos create key --file /opt/stokvel-coin/code/stokvel-coin/secrets/keys_thabo.txt
+  423  cleos create key --file /opt/stokvel-coin/code/stokvel-coin/secrets/keys_james.txt
+  424  ls
+  425  ls -lst
+  426  /opt/stokvel-coin/code/stokvel-coin/secrets/keys_admin.txt
+  427  cat /opt/stokvel-coin/code/stokvel-coin/secrets/keys_admin.txt 
+  428  cat /opt/stokvel-coin/code/stokvel-coin/secrets/keys_alice.txt 
+  429  cat /opt/stokvel-coin/code/stokvel-coin/secrets/keys_anele.txt 
+  430  cat /opt/stokvel-coin/code/stokvel-coin/secrets/keys_thabo.txt 
+  431  cat /opt/stokvel-coin/code/stokvel-coin/secrets/keys_james.txt 
+  432  cleos wallet open -n w_admin
+  433  cleos wallet unlock -n w_admin
+  434  cleos wallet import --name w_admin --private-key 5KhcsYUAVuGLQzfxGDCVmmxV3XYKGyfgbpJAbtrRZxhmbyhc1AN
+  435  cleos wallet open -n w_anele
+  436  cleos wallet unlock -n w_anele
+  437  cleos wallet import --name w_anele --private-key 5J1meTt8gj6WnBiQZjWogAkb78zNsDBeF3AipjhY7wvGshtRMcA
+  438  cleos wallet open -n w_alice
+  439  cleos wallet unlock -n w_alice
+  440  cleos wallet import --name w_alice --private-key 5HyLGkzzWeM1gBNvGvJLvq4cxrzXG3KkyoV4FjjXq35it8mjT72
+  441  cleos wallet open -n w_thabo
+  442  cleos wallet unlock -n w_thabo
+  443  cleos wallet import --name w_thabo --private-key 5JQ3QSE61eisPP2KVJ1geXaVUA1TEhiV8UJiUP4fgQepCd5Yap2
+  444  cleos wallet open -n w_james
+  445  cleos wallet unlock -n w_james
+  446  cleos wallet import --name w_james --private-key 5HzyTioRN5CS8zHCoMwyspqHctD85E21ssEtDyZCJnjF5sZFCxx
+  447  cleos wallet unlock -n w_admin
+  448  cleos wallet open -n w_admin
+  449  cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/bank                           -p admin@active
+  450  ps -eaf | grep eos
+  451  history
+  452  nodeos -e -p eosio --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1
+  453  ps -eaf | grep eos
+  454  cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/bank                           -p admin@active
+  455  nodeos -e -p eosio --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 &
+  456  df -H
+  457  nodeos -e -p eosio --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::db_size_api_plugin --plugin eosio::history_api_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 &
+  458  clear
+  459  nodeos -e -p eosio --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::db_size_api_plugin --plugin eosio::history_api_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 &
+  460  ls /var/log/eosio-startup.out
+  461  cat /var/log/eosio-startup.out
+  462  ls -lst /var/log/
+  463  ls -lst /var/log/amazon/
+  464  ls -lst /var/log/amazon/ssm/
+  465  top
+  466  reboot
+  467  sudo reboot
+  468  df -H
+  469  sudo ps -eaf 
+  470  sudo ps -eaf | grep eosio
+  471  sudo ps -eaf | grep eos
+  472  sudo ps -eaf | grep eosio
+  473  history
+  474  clear
+  475  nodeos -e -p eosio --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::db_size_api_plugin --plugin eosio::history_api_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 &
+  476  fg 1
+  477  nodeos -e -p eosio --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::db_size_api_plugin --plugin eosio::history_api_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors --p2p-peer-address=0.0.0.0:9876  >> nodeos.log 2>&1 &
+  478  which nodeos 
+  479  pwd
+  480  ls -lst /
+  481  cd /usr/
+  482  ls
+  483  cd opt/
+  484  ls
+  485  cd eosio
+  486  ls
+  487  cd 2.2.0-rc1/
+  488  ls
+  489  cd etc/
+  490  ls
+  491  cd eosio/
+  492  ls
+  493  cd contracts/
+  494  ls
+  495  pwd
+  496  ls -lst
+  497  cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/bank                           -p admin@active
+  498  ls /opt/stokvel-coin/code/stokvel-coin/bank/build/bank
+  499  ls /opt/stokvel-coin/code/stokvel-coin/bank/build/
+  500  cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/bank.wasm                           -p admin@active
+  501  cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/bank                           -p admin@active
+  502  nodeos -e -p eosio --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::db_size_api_plugin --plugin eosio::history_api_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors --p2p-peer-address=0.0.0.0:9876  >> nodeos.log 2>&1 &
+  503  which nodeos 
+  504  ifconfig
+  505  nodeos -e -p eosio --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::db_size_api_plugin --plugin eosio::history_api_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors --p2p-peer-address=172.31.32.93:9876  >> nodeos.log 2>&1 &
+  506  history
+  507  history | grep eosio
+  508  history | grep eosio::http_plugin 
+  509  nodeos -e -p eosio --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1
+  510  ls -lst
+  511  ps -eaf | grep eos
+  512  cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/bank                           -p admin@active
+  513  ps -eaf | grep eos
+  514  kill -9 2624
+  515  ps -eaf | grep eos
+  516  nodeos -e -p eosio --p2p-peer-address=172.31.32.93:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin 
+  517  --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1
+  518  ps -eaf | grep eos
+  519  nodeos -e -p eosio --p2p-peer-address=172.31.32.93:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1
+  520  ps -eaf | grep eos
+  521  ps -eaf | grep nodeos
+  522  sudo ps -eaf | grep nodeos
+  523  nodeos -e -p eosio --p2p-peer-address=172.31.32.93:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1
+  524  sudo ps -eaf | grep nodeos
+  525  nodeos -e -p eosio --p2p-peer-address=172.31.32.93:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1
+  526  sudo ps -eaf | grep nodeos
+  527  sudo nodeos -e -p eosio --p2p-peer-address=172.31.32.93:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1
+  528  ps -eaf | grep nodeos
+  529  sudo ps -eaf | grep nodeos
+  530  clear
+  531  sudo ps -eaf | grep nodeos
+  532  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  533  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876      --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  534  ps -eaf | grep node
+  535  ps -eaf | grep nodeos
+  536  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876      --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  537  ps -eaf | 
+  538  ps -eaf 
+  539  sudo ps -eaf 
+  540  sudo ps -eaf | grep nodeos
+  541  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876      --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  542  sudo ps -eaf | grep nodeos
+  543  ls
+  544  pwd
+  545  ls -lst
+  546  vi nodeos.log 
+  547  clear
+  548   sudo ps -eaf | grep nodeos
+  549  clear
+  550  pwd
+  551  ls -0lst
+  552  ls -lst
+  553  vi nodeos.log 
+  554  tail -f1000  nodeos.log 
+  555  tail -f 1000  nodeos.log 
+  556  sudo ps -eaf | grep eos
+  557  sudo ps -eaf | grep nodeos
+  558  clear
+  559  sudo ps -eaf | grep nodeos
+  560  clear
+  561  sudo ps -eaf | grep nodeos
+  562  clear
+  563  sudo ps -eaf | grep nodeos
+  564  clear
+  565  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  566  sudo ps -eaf | grep nodeos
+  567  sudo kill -9 7504
+  568  sudo ps -eaf | grep nodeos
+  569  sudo kill -9 7505 7506 7507
+  570  sudo ps -eaf | grep nodeos
+  571  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  572  sudo ps -eaf | grep nodeos
+  573  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  574  sudo ps -eaf | grep nodeos
+  575  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 & 
+  576  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  577  sudo ps -eaf | grep nodeos
+  578  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  579  sudo ps -eaf | grep nodeos
+  580   ps -eaf | grep nodeos
+  581  nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  582   ps -eaf | grep nodeos
+  583  pwd
+  584  clear
+  585  nodeos -e -p eosio --p2p-peer-address=13.245.10.68:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  586   ps -eaf | grep nodeos
+  587  sudo nodeos -e -p eosio --p2p-peer-address=172.31.32.93:9876 --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  588   ps -eaf | grep nodeos
+  589  sudo nodeos -e -p eosio                                      --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  590   ps -eaf | grep nodeos
+  591  sudo nodeos -e -p eosio                                      --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  592   ps -eaf | grep nodeos
+  593  clear
+  594  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876      --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors >> nodeos.log 2>&1 
+  595  clear
+  596   ps -eaf | grep nodeos
+  597  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876      --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors --replay-blockchain  >> nodeos.log 2>&1 
+  598   ps -eaf | grep nodeos
+  599  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876      --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors --replay-blockchain  > nodeos.log 2>&1 
+  600  ls
+  601  sudo yum uninstall eosio
+  602  sudo yum remove eosio
+  603  sudo nodeos -e -p eosio --p2p-peer-address=0.0.0.0:9876      --plugin eosio::net_api_plugin --plugin eosio::net_plugin --plugin eosio::producer_plugin --plugin eosio::producer_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --filter-on="*" --access-control-allow-origin='*' --contracts-console --http-validate-host=false --verbose-http-errors --replay-blockchain  > nodeos.log 2>&1 
+  604  clear
+  605  pwd
+  606  ls -lst
+  607  ls -lst eosio-wallet
+  608  ls -lst ~/eosio-wallet
+  609  pwd
+  610  cleos wallet unlock -n w_admin
+  611  cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/bank                           -p admin@active
+  612  ls -lst /opt/stokvel-coin/code/stokvel-coin/bank/build/bank
+  613  ls -lst /opt/stokvel-coin/code/stokvel-coin/bank/build/
+  614  ls -lst /opt/stokvel-coin/code/stokvel-coin/bank/build/bank.wasm 
+  615  cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/bank.wasm                           -p admin@active
+  616  cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/bank.abi                           -p admin@active
+  617  cleos --url http://localhost:8888 get info
+  618  cleos --url http://13.245.10.68:8888 get info
+  619  clear
+  620  cleos --url http://localhost:8888 get info
+  621  cleos --url http://13.245.10.68:8888 get info
+  622  cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/bank.abi                           -p admin@active
+  623  cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/ bank.wasm bank.abi            -p admin@active
+  624  cleos wallet unlock -n w_admin
+  625  cleos set contract bank              /opt/stokvel-coin/code/stokvel-coin/bank/build/ bank.wasm bank.abi            -p admin@active
+  626  cleos create account eosio admin EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  627  cleos wallet unlock 
+  628  cleos wallet unlock -n w_admin
+  629  cleos create account eosio admin EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  630  cleos wallet import --name w_admin --public-key  EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  631  cleos create account eosio a_admin EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  632  cleos create account eosio aadmin EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  633  cleos wallet unlock -n w_admin
+  634  cleos create account eosio aadmin EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  635  cleos wallet unlock
+  636  ls -lst
+  637  ls eosio-
+  638  ls eosio-wallet/
+  639  vi eosio-wallet/config.ini 
+  640  cleos wallet list
+  641  cleos create account eosio aadmin EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  642  cleos wallet open -n w_admin
+  643  cleos wallet unlock -n w_admin
+  644  cleos wallet open -n w_admin
+  645  cleos create account eosio aadmin EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  646  cleos wallet unlock -n w_admin
+  647  cleos create account eosio aadmin EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  648  clear
+  649  cleos create account eosio deleteaccount
+  650  cleos create account eosio deleteaccount --help
+  651  cleos create account eosio alice YOUR_PUBLIC_KEY
+  652  cleos create account eosio alices PW5Kcd1yHzqL9GKgxSpdDu9ev8d9NM1TWqApQMC7nYo698Vc75HoT
+  653  cleos create account eosio alices EOS57tU2MFzF6yhTdhnYiQPGDU8UuLAV4SZBRrLjMBno3Tw19Tgrn
+  654  cleos create account eosio alices EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  655  cleos wallet unlock -n w_admin
+  656  cleos create account eosio alices 
+  657  cleos create account admin deleteaccount EOS87TQktA5RVse2EguhztfQVEh6XXxBmgkU8b4Y5YnGvtYAoLGNN
+  658  cleos create account admin deleteacc EOS87TQktA5RVse2EguhztfQVEh6XXxBmgkU8b4Y5YnGvtYAoLGNN
+  659  cleos wallet unlock -n w_admin
+  660  cleos create account admin deleteacc EOS87TQktA5RVse2EguhztfQVEh6XXxBmgkU8b4Y5YnGvtYAoLGNN
+  661  cleos get accout  admin
+  662  cleos get account  admin
+  663  thabo
+  664  cleos get account thabo
+  665  clear
+  666  cleos create account eosio aadmin EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  667  cleos create account admin  aadmin EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  668  cleos set account permission alice active EOS57tU2MFzF6yhTdhnYiQPGDU8UuLAV4SZBRrLjMBno3Tw19Tgrn -p alice@owner
+  669  cleos set account permission alice active --add-code -p alice@active
+  670  clear
+  671  cleos create account eosio aadmin
+  672  cleos create account eosio aadmin EOS7v5WQBoNkBDq7KYvnYpjstH3dAbqWsJe69EfcMrP1r1rU8oLgg
+  673  ls
+  674  history
+  675  pwd
+  676  cd /opt/stokvel-coin/code/stokvel-coin/
+  677  git pull
+  678  git push
+  679  ls -lst
+  680  vi notes.txt 
+  681  pwd
+  682  ls -lst
+  683  history
+  684  history > history.txt
