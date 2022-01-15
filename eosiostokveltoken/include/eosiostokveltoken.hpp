@@ -39,6 +39,8 @@ namespace eosio {
 		 */
 		[[eosio::action]]
 		void create_(const name& issuer, const asset& maximum_supply);
+
+		[[eosio::action]]
 		void create() ;
 		/**
 		 *  This action issues to `to` account a `quantity` of tokens.
@@ -49,6 +51,7 @@ namespace eosio {
 		 */
 		[[eosio::action]]
 		void issue_(const name& to, const asset& quantity, const string& memo);
+
 		[[eosio::action]]
 		void issue(const asset& quantity, const string& memo);
 
@@ -61,6 +64,7 @@ namespace eosio {
 		 */
 		[[eosio::action]]
 		void retire_(const asset& quantity, const string& memo);
+
 		[[eosio::action]]
 		void retire(const asset& quantity, const string& memo);
 
@@ -75,6 +79,7 @@ namespace eosio {
 		 */
 		[[eosio::action]]
 		void transfer_(const name& from, const name& to, const asset& quantity, const string& memo);
+
 		[[eosio::action]]
 		void transfer(const name& from, const name& to, const asset& quantity, const string& memo);
 
