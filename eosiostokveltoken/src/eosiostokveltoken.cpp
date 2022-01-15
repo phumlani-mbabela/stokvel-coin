@@ -2,7 +2,7 @@
 
 namespace eosio {
 
-	void token::create_(const name& issuer, const asset& maximum_supply) {
+	void token::Create(const name& issuer, const asset& maximum_supply) {
 		require_auth(get_self());
 
 		auto sym = maximum_supply.symbol;
@@ -39,7 +39,7 @@ namespace eosio {
 	}
 
 
-	void token::issue_(const name& to, const asset& quantity, const string& memo) {
+	void token::Issue(const name& to, const asset& quantity, const string& memo) {
 		auto sym = quantity.symbol;
 		check(sym.is_valid(), "invalid symbol name");
 		check(memo.size() <= 256, "memo has more than 256 bytes");
@@ -93,7 +93,7 @@ namespace eosio {
 		add_balance(existing_token.issuer, quantity, existing_token.issuer);
 	}
 
-	void token::retire_(const asset& quantity, const string& memo) {
+	void token::Retire(const asset& quantity, const string& memo) {
 		auto sym = quantity.symbol;
 		check(sym.is_valid(), "invalid symbol name");
 		check(memo.size() <= 256, "memo has more than 256 bytes");
@@ -141,7 +141,7 @@ namespace eosio {
 		sub_balance(st.issuer, quantity);
 	}
 
-	void token::transfer_(const name& from, const name& to, const asset& quantity, const string& memo) {
+	void token::Transfer(const name& from, const name& to, const asset& quantity, const string& memo) {
 		check(from != to, "cannot transfer to self");
 		require_auth(from);
 		check(is_account(to), "to account does not exist");

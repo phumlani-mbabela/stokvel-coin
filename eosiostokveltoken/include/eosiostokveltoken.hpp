@@ -38,7 +38,7 @@ namespace eosio {
 		 * @pre Maximum supply must be positive;
 		 */
 		[[eosio::action]]
-		void create_(const name& issuer, const asset& maximum_supply);
+		void Create(const name& issuer, const asset& maximum_supply);
 
 		[[eosio::action]]
 		void create() ;
@@ -50,7 +50,7 @@ namespace eosio {
 		 * @memo - the memo string that accompanies the token issue transaction.
 		 */
 		[[eosio::action]]
-		void issue_(const name& to, const asset& quantity, const string& memo);
+		void Issue(const name& to, const asset& quantity, const string& memo);
 
 		[[eosio::action]]
 		void issue(const asset& quantity, const string& memo);
@@ -63,7 +63,7 @@ namespace eosio {
 		 * @param memo - the memo string to accompany the transaction.
 		 */
 		[[eosio::action]]
-		void retire_(const asset& quantity, const string& memo);
+		void Retire(const asset& quantity, const string& memo);
 
 		[[eosio::action]]
 		void retire(const asset& quantity, const string& memo);
@@ -78,7 +78,7 @@ namespace eosio {
 		 * @param memo - the memo string to accompany the transaction.
 		 */
 		[[eosio::action]]
-		void transfer_(const name& from, const name& to, const asset& quantity, const string& memo);
+		void Transfer(const name& from, const name& to, const asset& quantity, const string& memo);
 
 		[[eosio::action]]
 		void transfer(const name& from, const name& to, const asset& quantity, const string& memo);
