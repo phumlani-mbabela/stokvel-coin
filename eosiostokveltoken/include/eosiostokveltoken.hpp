@@ -56,8 +56,7 @@ namespace eosio {
 		void issue(const asset& quantity, const string& memo);
 
 		/**
-		 * The opposite for create action, if all validations succeed,
-		 * it debits the statstable.supply amount.
+		 * The opposite for create action, if all validations succeed, it debits the statstable.supply amount.
 		 *
 		 * @param quantity - the quantity of tokens to retire,
 		 * @param memo - the memo string to accompany the transaction.
@@ -69,8 +68,7 @@ namespace eosio {
 		void retire(const asset& quantity, const string& memo);
 
 		/**
-		 * Allows `from` account to transfer to `to` account the `quantity` tokens.
-		 * One account is debited and the other is credited with quantity tokens.
+		 * Allows `from` account to transfer to `to` account the `quantity` tokens. One account is debited and the other is credited with quantity tokens.
 		 *
 		 * @param from - the account to transfer from,
 		 * @param to - the account to be transferred to,
@@ -84,8 +82,7 @@ namespace eosio {
 		void transfer(const name& from, const name& to, const asset& quantity, const string& memo);
 
 		/**
-		 * Allows `ram_payer` to create an account `owner` with zero balance for
-		 * token `symbol` at the expense of `ram_payer`.
+		 * Allows `ram_payer` to create an account `owner` with zero balance for token `symbol` at the expense of `ram_payer`.
 		 *
 		 * @param owner - the account to be created,
 		 * @param symbol - the token to be payed with by `ram_payer`,
@@ -98,8 +95,7 @@ namespace eosio {
 		void open(const name& owner, const symbol& symbol, const name& ram_payer);
 
 		/**
-		 * This action is the opposite for open, it closes the account `owner`
-		 * for token `symbol`.
+		 * This action is the opposite for open, it closes the account `owner` for token `symbol`.
 		 *
 		 * @param owner - the owner account to execute the close action for,
 		 * @param symbol - the symbol of the token to execute the close action for.

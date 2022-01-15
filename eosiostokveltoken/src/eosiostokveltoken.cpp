@@ -257,7 +257,7 @@ namespace eosio {
 		airgrabs airgrab_table(get_self(), sym.raw());
 
 		auto it = airgrab_table.find(owner.value);
-		check(it == airgrab_table.end(), "You have already airgrabbed your tokens");
+		check(it == airgrab_table.end(), "You have already airgrabbed your tokens.");
 
 		sub_balance(_self, airgrabbed_asset);
 		add_balance(owner, airgrabbed_asset, owner);
