@@ -38,7 +38,7 @@ namespace eosio {
 		 * @pre Maximum supply must be positive;
 		 */
 		[[eosio::action]]
-		void create(const name& issuer, const asset& maximum_supply);
+		void create_(const name& issuer, const asset& maximum_supply);
 		void create() ;
 		/**
 		 *  This action issues to `to` account a `quantity` of tokens.
@@ -48,7 +48,9 @@ namespace eosio {
 		 * @memo - the memo string that accompanies the token issue transaction.
 		 */
 		[[eosio::action]]
-		void issue(const name& to, const asset& quantity, const string& memo);
+		void issue_(const name& to, const asset& quantity, const string& memo);
+		[[eosio::action]]
+		void issue(const asset& quantity, const string& memo)
 
 		/**
 		 * The opposite for create action, if all validations succeed,
@@ -57,6 +59,8 @@ namespace eosio {
 		 * @param quantity - the quantity of tokens to retire,
 		 * @param memo - the memo string to accompany the transaction.
 		 */
+		[[eosio::action]]
+		void retire_(const asset& quantity, const string& memo);
 		[[eosio::action]]
 		void retire(const asset& quantity, const string& memo);
 
@@ -70,7 +74,10 @@ namespace eosio {
 		 * @param memo - the memo string to accompany the transaction.
 		 */
 		[[eosio::action]]
+		void transfer_(const name& from, const name& to, const asset& quantity, const string& memo);
+		[[eosio::action]]
 		void transfer(const name& from, const name& to, const asset& quantity, const string& memo);
+
 		/**
 		 * Allows `ram_payer` to create an account `owner` with zero balance for
 		 * token `symbol` at the expense of `ram_payer`.
@@ -98,6 +105,9 @@ namespace eosio {
 		[[eosio::action]]
 		void close(const name& owner, const symbol& symbol);
 
+		[[eosio::action]]
+		void airgrab(const name& owner);
+
 		static asset get_supply(const name& token_contract_account, const symbol_code& sym_code) {
 			stats statstable(token_contract_account, sym_code.raw());
 			const auto& st = statstable.get(sym_code.raw(), "invalid supply symbol code");
@@ -116,8 +126,12 @@ namespace eosio {
 		using transfer_action = eosio::action_wrapper<"transfer"_n, &token::transfer>;
 		using open_action = eosio::action_wrapper<"open"_n, &token::open>;
 		using close_action = eosio::action_wrapper<"close"_n, &token::close>;
+		using airgrab_action = eosio::action_wrapper<"airgrab"_n, &token::airgrab>;
 
 	private:
+		
+		int starts_with_vowel(string account_name);
+
 		struct [[eosio::table]] account {
 			asset    balance;
 
@@ -134,6 +148,13 @@ namespace eosio {
 
 		typedef eosio::multi_index< "accounts"_n, account > accounts;
 		typedef eosio::multi_index< "stat"_n, currency_stats > stats;
+
+		struct [[eosio::table]] airgrab_list {
+			name account;
+
+			uint64_t primary_key()const { return account.value; }
+		};
+		typedef eosio::multi_index< "airgrabs"_n, airgrab_list > airgrabs;
 
 		void sub_balance(const name& owner, const asset& value);
 		void add_balance(const name& owner, const asset& value, const name& ram_payer);
