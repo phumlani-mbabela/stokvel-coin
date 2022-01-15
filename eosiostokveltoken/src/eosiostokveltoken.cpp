@@ -21,6 +21,23 @@ namespace eosio {
 		});
 	}
 
+	void token::create() {
+		require_auth(get_self());
+
+		auto sym = symbol("STVL", 4); // STVL is the token symbol with precision 4
+		auto maximum_supply = asset(210000000000, sym);
+
+		stats statstable(get_self(), sym.code().raw());
+		auto existing = statstable.find(sym.code().raw());
+		check(existing == statstable.end(), "token with symbol already created");
+
+		statstable.emplace(get_self(), [&](auto& s) {
+			s.supply.symbol = sym;
+			s.max_supply = maximum_supply;
+			s.issuer = get_self();
+		});
+	}
+
 
 	void token::issue(const name& to, const asset& quantity, const string& memo) {
 		auto sym = quantity.symbol;
@@ -70,10 +87,7 @@ namespace eosio {
 		sub_balance(st.issuer, quantity);
 	}
 
-	void token::transfer(const name& from,
-						 const name& to,
-						 const asset& quantity,
-						 const string& memo) {
+	void token::transfer(const name& from, const name& to, const asset& quantity, const string& memo) {
 		check(from != to, "cannot transfer to self");
 		require_auth(from);
 		check(is_account(to), "to account does not exist");

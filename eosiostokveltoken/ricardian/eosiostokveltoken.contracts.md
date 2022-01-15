@@ -1,4 +1,4 @@
-<h1 class="contract"> <create> </h1>
+<h1 class="contract"> create </h1>
 Stub for create action's ricardian contract
 spec_version: 0.0.0
 title: Create Post
