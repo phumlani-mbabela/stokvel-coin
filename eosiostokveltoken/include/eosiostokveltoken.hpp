@@ -50,7 +50,7 @@ namespace eosio {
 		[[eosio::action]]
 		void issue_(const name& to, const asset& quantity, const string& memo);
 		[[eosio::action]]
-		void issue(const asset& quantity, const string& memo)
+		void issue(const asset& quantity, const string& memo);
 
 		/**
 		 * The opposite for create action, if all validations succeed,
