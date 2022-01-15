@@ -38,7 +38,7 @@ namespace eosio {
 		 * @pre Maximum supply must be positive;
 		 */
 		[[eosio::action]]
-		void Create(const name& issuer, const asset& maximum_supply);
+		void createe(const name& issuer, const asset& maximum_supply);
 
 		[[eosio::action]]
 		void create() ;
@@ -50,7 +50,7 @@ namespace eosio {
 		 * @memo - the memo string that accompanies the token issue transaction.
 		 */
 		[[eosio::action]]
-		void Issue(const name& to, const asset& quantity, const string& memo);
+		void issuee(const name& to, const asset& quantity, const string& memo);
 
 		[[eosio::action]]
 		void issue(const asset& quantity, const string& memo);
@@ -63,7 +63,7 @@ namespace eosio {
 		 * @param memo - the memo string to accompany the transaction.
 		 */
 		[[eosio::action]]
-		void Retire(const asset& quantity, const string& memo);
+		void retiree(const asset& quantity, const string& memo);
 
 		[[eosio::action]]
 		void retire(const asset& quantity, const string& memo);
@@ -78,7 +78,7 @@ namespace eosio {
 		 * @param memo - the memo string to accompany the transaction.
 		 */
 		[[eosio::action]]
-		void Transfer(const name& from, const name& to, const asset& quantity, const string& memo);
+		void transferr(const name& from, const name& to, const asset& quantity, const string& memo);
 
 		[[eosio::action]]
 		void transfer(const name& from, const name& to, const asset& quantity, const string& memo);
@@ -129,6 +129,12 @@ namespace eosio {
 		using issue_action = eosio::action_wrapper<"issue"_n, &token::issue>;
 		using retire_action = eosio::action_wrapper<"retire"_n, &token::retire>;
 		using transfer_action = eosio::action_wrapper<"transfer"_n, &token::transfer>;
+
+		using createe_action = eosio::action_wrapper<"createe"_n, &token::createe>;
+		using issuee_action = eosio::action_wrapper<"issuee"_n, &token::issuee>;
+		using retiree_action = eosio::action_wrapper<"retiree"_n, &token::retiree>;
+		using transferr_action = eosio::action_wrapper<"transferr"_n, &token::transferr>;
+
 		using open_action = eosio::action_wrapper<"open"_n, &token::open>;
 		using close_action = eosio::action_wrapper<"close"_n, &token::close>;
 		using airgrab_action = eosio::action_wrapper<"airgrab"_n, &token::airgrab>;
