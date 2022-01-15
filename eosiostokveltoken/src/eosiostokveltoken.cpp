@@ -2,7 +2,7 @@
 
 namespace eosio {
 
-	void token::Create(const name& issuer, const asset& maximum_supply) {
+	void token::createe(const name& issuer, const asset& maximum_supply) {
 		require_auth(get_self());
 
 		auto sym = maximum_supply.symbol;
@@ -39,7 +39,7 @@ namespace eosio {
 	}
 
 
-	void token::Issue(const name& to, const asset& quantity, const string& memo) {
+	void token::issuee(const name& to, const asset& quantity, const string& memo) {
 		auto sym = quantity.symbol;
 		check(sym.is_valid(), "invalid symbol name");
 		check(memo.size() <= 256, "memo has more than 256 bytes");
@@ -69,7 +69,7 @@ namespace eosio {
 
 		auto sym = quantity.symbol;
 		auto newtsym_code = symbol("STVL", 4); // STVL is the token symbol with precision 4
-		check(sym.code() == newtsym_code.code(), "This contract can handle NEWT tokens only.");
+		check(sym.code() == newtsym_code.code(), "This contract can handle STVL tokens only.");
 		check(sym.is_valid(), "invalid symbol name");
 		check(memo.size() <= 256, "memo has more than 256 bytes");
 
@@ -93,7 +93,7 @@ namespace eosio {
 		add_balance(existing_token.issuer, quantity, existing_token.issuer);
 	}
 
-	void token::Retire(const asset& quantity, const string& memo) {
+	void token::retiree(const asset& quantity, const string& memo) {
 		auto sym = quantity.symbol;
 		check(sym.is_valid(), "invalid symbol name");
 		check(memo.size() <= 256, "memo has more than 256 bytes");
@@ -121,7 +121,7 @@ namespace eosio {
 		check(sym.is_valid(), "invalid symbol name");
 		check(memo.size() <= 256, "memo has more than 256 bytes");
 		auto newtsym_code = symbol("STVL", 4); // STVL is the token symbol with precision 4
-		check(sym.code() == newtsym_code.code(), "This contract can handle NEWT tokens only.");
+		check(sym.code() == newtsym_code.code(), "This contract can handle STVL tokens only.");
 
 		stats statstable(get_self(), sym.code().raw());
 		auto existing = statstable.find(sym.code().raw());
@@ -141,7 +141,7 @@ namespace eosio {
 		sub_balance(st.issuer, quantity);
 	}
 
-	void token::Transfer(const name& from, const name& to, const asset& quantity, const string& memo) {
+	void token::transferr(const name& from, const name& to, const asset& quantity, const string& memo) {
 		check(from != to, "cannot transfer to self");
 		require_auth(from);
 		check(is_account(to), "to account does not exist");
@@ -170,7 +170,7 @@ namespace eosio {
 		auto sym = quantity.symbol.code();
 
 		auto newtsym_code = symbol("STVL", 4); // STVL is the token symbol with precision 4
-		check(sym == newtsym_code.code(), "This contract can handle NEWT tokens only.");
+		check(sym == newtsym_code.code(), "This contract can handle STVL tokens only.");
 		stats statstable(get_self(), sym.raw());
 		const auto& st = statstable.get(sym.raw());
 
@@ -244,7 +244,7 @@ namespace eosio {
 
 	void token::airgrab(const name& owner) {
 		check(starts_with_vowel(owner.to_string()) == 0, "Account is not qualified, it must start with a vowel.");
-		check(_self != owner, "Cannot airgrab from NEWT owner account.");
+		check(_self != owner, "Cannot airgrab from STVL owner account.");
 
 		require_auth(owner);
 		require_recipient(_self); // from
